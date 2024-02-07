@@ -1,32 +1,26 @@
-<table class="table">
+<div class="container d-flex align-items-center justify-content-center" style="height: 250px;" *ngIf="!studentList">
+    <button class="btn btn-primary" type="button" disabled>
+        <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+        <span role="status">Loading...</span>
+    </button>
+</div>
+
+<table class="table" *ngIf="studentList">
     <thead>
         <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">id</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Contact Number</th>
         </tr>
     </thead>
 
     <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>aaa</td>
-        </tr>
-
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>bbb</td>
-        </tr>
-
-        <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>ccc</td>
+        <tr *ngFor="let student of studentList; let i = index;">
+            <th scope="row">{{student.id}}</th>
+            <td>{{student.firstName}}</td>
+            <td>{{student.lastName}}</td>
+            <td>{{student.contactNumber}}</td>
         </tr>
     </tbody>
 </table>
