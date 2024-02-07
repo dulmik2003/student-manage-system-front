@@ -1,20 +1,49 @@
 <form>
     <div class="mb-3">
         <label for="first-name" class="form-label">First Name</label>
-        <input type="text" class="form-control" id="first-name" [(ngModel)]="student.firstName" [ngModelOptions]="{standalone: true}">
+        <input type="text" class="form-control" id="first-name" [(ngModel)]="student.firstName"
+            [ngModelOptions]="{standalone: true}">
     </div>
 
     <div class="mb-3">
         <label for="last-name" class="form-label">Last Name</label>
-        <input type="text" class="form-control" id="last-name" [(ngModel)]="student.lastName" [ngModelOptions]="{standalone: true}">
+        <input type="text" class="form-control" id="last-name" [(ngModel)]="student.lastName"
+            [ngModelOptions]="{standalone: true}">
     </div>
 
     <div class="mb-3">
         <label for="contact-number" class="form-label">Contact Number</label>
-        <input type="number" class="form-control" id="contact-number" [(ngModel)]="student.contactNumber" [ngModelOptions]="{standalone: true}">
+        <input type="text" class="form-control" id="contact-number" [(ngModel)]="student.contactNumber"
+            [ngModelOptions]="{standalone: true}">
     </div>
 
     <div class="mb-3">
-        <button type="button" (click)="createStudent()" class="btn btn-primary">Proceed</button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+            data-bs-target="#staticBackdrop">Proceed</button>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- modal header -->
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <!-- modal body -->
+                <div class="modal-body">
+                    ...
+                </div>
+
+                <!-- modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Understood</button>
+                </div>
+            </div>
+        </div>
+    </div> 
 </form>

@@ -12,6 +12,7 @@
             <th scope="col">First Name</th>
             <th scope="col">Last Name</th>
             <th scope="col">Contact Number</th>
+            <th scope="col">Action</th>
         </tr>
     </thead>
 
@@ -21,6 +22,13 @@
             <td>{{student.firstName}}</td>
             <td>{{student.lastName}}</td>
             <td>{{student.contactNumber}}</td>
+            <td>
+                <button type="button" class="btn btn-danger me-2" (click)="removeStudent(student.id)">
+                    <i class="bi bi-trash3"></i></button>
+                <button type="button" class="btn btn-primary">
+                    <i class="bi bi-pencil-square"></i>
+                </button>
+            </td>           
         </tr>
     </tbody>
 </table>

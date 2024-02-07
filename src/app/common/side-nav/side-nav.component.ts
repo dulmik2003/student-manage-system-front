@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrl: './side-nav.component.css'
 })
 export class SideNavComponent {
-
+  
 }

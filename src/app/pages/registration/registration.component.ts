@@ -14,15 +14,21 @@ export class RegistrationComponent {
   }
 
   public student = {
-    "firstName": null,
-    "lastName": null,
-    "contactNumber": null
-  }
+    firstName: null,
+    lastName: null,
+    contactNumber: null
+  };
 
-  createStudent() {
+  saveStudent() {
     this.http.post("http://localhost:8080/student/add", this.student)
       .subscribe((data) => {
         console.log(data);
+
+        this.student = {
+          firstName: null,
+          lastName: null,
+          contactNumber: null
+        };
       })
   }
 }

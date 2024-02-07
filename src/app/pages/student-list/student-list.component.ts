@@ -25,4 +25,12 @@ export class StudentListComponent implements OnInit {
         console.log(this.studentList);
       });
   }
+
+  removeStudent(id: BigInteger) {
+    this.http.delete(`http://localhost:8080/student/delete/${id}`)
+      .subscribe((data) => {
+        console.log(data);
+        this.loadStudent();
+      });
+  }
 }
