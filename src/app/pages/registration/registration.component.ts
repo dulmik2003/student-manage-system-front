@@ -9,9 +9,7 @@ import { Component } from '@angular/core';
 export class RegistrationComponent {
   private http;
 
-  constructor(httpClient: HttpClient) {
-    this.http = httpClient;
-  }
+  public recentSavedStudent: any;
 
   public student = {
     firstName: null,
@@ -19,16 +17,24 @@ export class RegistrationComponent {
     contactNumber: null
   };
 
+  
+
+  constructor(httpClient: HttpClient) {
+    this.http = httpClient;
+  }
+
+
   saveStudent() {
+    this.recentSavedStudent = null;
     this.http.post("http://localhost:8080/student/add", this.student)
       .subscribe((data) => {
-        console.log(data);
+        this.recentSavedStudent = data;
 
         this.student = {
           firstName: null,
           lastName: null,
           contactNumber: null
         };
-      })
+      });
   }
 }

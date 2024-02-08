@@ -1,22 +1,29 @@
-<div class="container" style="width: fit-content;">
+<div class="container  shadow p-4" style="width: fit-content;">
     <ul class="nav nav-pills flex-column mb-auto">
-        <li class="nav-item">
-            <a href="#" class="nav-link active" aria-current="page">
+        <li (click)="setSelectedMenu('home')">
+            <a [ngClass]="{'active': selectedMenu == 'home'}" [class.link-body-emphasis]="selectedMenu != 'home'"
+                routerLink="" class="nav-link link-body-emphasis" aria-current="page">
                 <i class="bi bi-house-door-fill"></i>
+                &nbsp;&nbsp;
                 Home
             </a>
         </li>
 
-        <li>
-            <a routerLink="/registration" class="nav-link link-body-emphasis">
+        <li (click)="setSelectedMenu('register')">
+            <a [ngClass]="{'active': selectedMenu == 'register'}"
+                [class.link-body-emphasis]="selectedMenu != 'register'" routerLink="registration"
+                class="nav-link link-body-emphasis">
                 <i class="bi bi-box-arrow-in-right"></i>
+                &nbsp;&nbsp;
                 Student Registration
             </a>
         </li>
 
-        <li>
-            <a routerLink="/student-list" class="nav-link link-body-emphasis">
+        <li (click)="setSelectedMenu('view')">
+            <a [ngClass]="{'active': selectedMenu == 'view'}" [class.link-body-emphasis]="selectedMenu != 'view'"
+                routerLink="student-list" class="nav-link link-body-emphasis">
                 <i class="bi bi-table"></i>
+                &nbsp;&nbsp;
                 View Students
             </a>
         </li>

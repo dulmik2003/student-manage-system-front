@@ -1,3 +1,4 @@
+<!-- loading indicator -->
 <div class="container d-flex align-items-center justify-content-center" style="height: 250px;" *ngIf="!studentList">
     <button class="btn btn-primary" type="button" disabled>
         <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
@@ -5,30 +6,122 @@
     </button>
 </div>
 
-<table class="table" *ngIf="studentList">
-    <thead>
-        <tr>
-            <th scope="col">id</th>
-            <th scope="col">First Name</th>
-            <th scope="col">Last Name</th>
-            <th scope="col">Contact Number</th>
-            <th scope="col">Action</th>
-        </tr>
-    </thead>
 
-    <tbody>
-        <tr *ngFor="let student of studentList; let i = index;">
-            <th scope="row">{{student.id}}</th>
-            <td>{{student.firstName}}</td>
-            <td>{{student.lastName}}</td>
-            <td>{{student.contactNumber}}</td>
-            <td>
-                <button type="button" class="btn btn-danger me-2" (click)="removeStudent(student.id)">
-                    <i class="bi bi-trash3"></i></button>
-                <button type="button" class="btn btn-primary">
-                    <i class="bi bi-pencil-square"></i>
-                </button>
-            </td>           
-        </tr>
-    </tbody>
-</table>
+<div class="shadow p-4 mt-3">
+    <table class="table" *ngIf="studentList">
+        <thead>
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Contact Number</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let student of studentList; let i = index;">
+                <th scope="row">{{student.id}}</th>
+                <td>{{student.firstName}}</td>
+                <td>{{student.lastName}}</td>
+                <td>{{student.contactNumber}}</td>
+                <td>
+                    <button type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal"
+                        data-bs-target="#updateModal" (click)="setSelectedStudent(student)">
+                        <i class="bi bi-pencil-square"></i>
+                    </button>
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"
+                        (click)="setSelectedStudent(student)">
+                        <i class="bi bi-trash3"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!--delete modal -->
+    <div class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content rounded-3 shadow px-3">
+                <div class="modal-body py-0 text-center">
+                    <h1 class="modal-title fs-5 text-center mb-4 mt-3">
+                        <i class="bi bi-exclamation-triangle-fill text-danger"></i>
+                        <br>
+                        Are you sure ?
+                    </h1>
+
+                    <p>
+                        This will delete this student permenently. You cannot undo this action.
+                    </p>
+                </div>
+
+                <div class="modal-footer flex-column align-items-stretch w-100 gap-2 pb-3 border-top-0">
+                    <button type="button" class="btn btn-lg btn-danger" data-bs-dismiss="modal"
+                        (click)="removeStudent()">
+                        Delete
+                    </button>
+
+                    <button type="button" class="btn btn-lg btn-outline-secondary" data-bs-dismiss="modal">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- update modal -->
+    <div class="modal fade" id="updateModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content rounded-3 shadow px-3">
+                <div class="row text-bg-primary rounded">
+                    <div class="modal-header d-flex justify-content-center">
+                        <h5 class="modal-title">Update Student Infomation</h5>
+                    </div>
+                </div>
+
+                <div class="modal-body py-0 text-center">
+                    <form class="py-3">
+                        <h5 class="text-start text-primary font-monospace my-3">
+                            Student Id
+                            &nbsp;
+                            <strong>{{selectedStudent && selectedStudent.id}}</strong>
+                        </h5>
+
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control rounded-3" id="first-name"
+                                [(ngModel)]="selectedStudent && selectedStudent.firstName"
+                                [ngModelOptions]="{standalone: true}">
+                            <label for="first-name">First Name</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control rounded-3" id="last-name"
+                                [(ngModel)]="selectedStudent && selectedStudent.lastName"
+                                [ngModelOptions]="{standalone: true}">
+                            <label for="last-name">Last Name</label>
+                        </div>
+
+                        <div class="form-floating">
+                            <input type="text" class="form-control rounded-3" id="contact-number"
+                                [(ngModel)]="selectedStudent && selectedStudent.contactNumber"
+                                [ngModelOptions]="{standalone: true}">
+                            <label for="contact-number">Contact Number</label>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" (click)="updateStudentInfo()" data-bs-dismiss="modal">
+                        Save Changes
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"
+                        (click)="loadStudentList()">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

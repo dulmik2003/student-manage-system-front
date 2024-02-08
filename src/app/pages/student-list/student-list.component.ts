@@ -8,29 +8,50 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StudentListComponent implements OnInit {
   private http;
+
   public studentList: any;
+
+  public selectedStudent: any;
+
+
 
   constructor(httpClient: HttpClient) {
     this.http = httpClient;
   }
 
+
   ngOnInit(): void {
-    this.loadStudent();
+    this.loadStudentList();
   }
 
-  loadStudent() {
+
+  loadStudentList() {
     this.http.get("http://localhost:8080/student/get-all")
       .subscribe((data) => {
         this.studentList = data;
-        console.log(this.studentList);
       });
   }
 
-  removeStudent(id: BigInteger) {
-    this.http.delete(`http://localhost:8080/student/delete/${id}`)
+
+  removeStudent() {
+    this.http.delete(`http://localhost:8080/student/delete/${this.selectedStudent.id}`)
       .subscribe((data) => {
-        console.log(data);
-        this.loadStudent();
+        this.loadStudentList();
+        this.selectedStudent = null;
       });
+  }
+
+
+  updateStudentInfo() {
+    this.http.patch("http://localhost:8080/student/update", this.selectedStudent)
+      .subscribe((data) => {
+        this.loadStudentList();
+        this.selectedStudent = null;
+      });
+  }
+
+
+  setSelectedStudent(student: any) {
+    this.selectedStudent = student;
   }
 }

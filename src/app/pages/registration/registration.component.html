@@ -1,49 +1,63 @@
-<form>
-    <div class="mb-3">
-        <label for="first-name" class="form-label">First Name</label>
+<form class=" shadow p-4 mt-3">
+    <div class="mb-4">
+        <label for="first-name" class="form-label fw-medium">First Name</label>
         <input type="text" class="form-control" id="first-name" [(ngModel)]="student.firstName"
             [ngModelOptions]="{standalone: true}">
     </div>
 
-    <div class="mb-3">
-        <label for="last-name" class="form-label">Last Name</label>
+    <div class="mb-4">
+        <label for="last-name" class="form-label fw-medium">Last Name</label>
         <input type="text" class="form-control" id="last-name" [(ngModel)]="student.lastName"
             [ngModelOptions]="{standalone: true}">
     </div>
 
-    <div class="mb-3">
-        <label for="contact-number" class="form-label">Contact Number</label>
+    <div class="mb-4">
+        <label for="contact-number" class="form-label fw-medium">Contact Number</label>
         <input type="text" class="form-control" id="contact-number" [(ngModel)]="student.contactNumber"
             [ngModelOptions]="{standalone: true}">
     </div>
 
-    <div class="mb-3">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-            data-bs-target="#staticBackdrop">Proceed</button>
+    <div class="mb-2">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" (click)="saveStudent()"
+            data-bs-target="#registrationSucessModal">Proceed</button>
     </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
+    <!-- save student modal -->
+    <div class="modal fade" id="registrationSucessModal" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <!-- modal header -->
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-
                 <!-- modal body -->
                 <div class="modal-body">
-                    ...
-                </div>
+                    <div class="alert alert-success text-center">
+                        <h2 class="fw-bold mb-2 text-center text-success" role="alert">
+                            Student Registered Sucessfully
+                        </h2>
+                        <h2 class="text-success">
+                            <i class="bi bi-check-circle-fill"></i>
+                        </h2>
+                    </div>
 
-                <!-- modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Understood</button>
+                    <div class="my-5">
+                        <h4 class="text-center text-primary font-monospace">
+                            Student Registration Id
+                        </h4>
+                        <h4 class="text-center text-primary fw-bold">
+                            {{recentSavedStudent && recentSavedStudent.id}}
+                        </h4>
+                    </div>
+
+                    <button type="button" class="btn btn-lg btn-primary w-100" data-bs-dismiss="modal"
+                        routerLink="/student-list">
+                        <i class="bi bi-list"></i>
+                        &nbsp;&nbsp;Go to View Students
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary btn-lg mt-3 w-100" data-bs-dismiss="modal">
+                        <i class="bi bi-person-plus-fill"></i>
+                        &nbsp;&nbsp;Add More Students
+                    </button>
                 </div>
             </div>
         </div>
-    </div> 
+    </div>
 </form>
