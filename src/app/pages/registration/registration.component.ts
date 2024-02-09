@@ -9,20 +9,32 @@ import { Component } from '@angular/core';
 export class RegistrationComponent {
   private http;
 
+  public recentSavedStudent: any;
+
+  public student = {
+    firstName: null,
+    lastName: null,
+    contactNumber: null
+  };
+
+  
+
   constructor(httpClient: HttpClient) {
     this.http = httpClient;
   }
 
-  public student = {
-    "firstName": null,
-    "lastName": null,
-    "contactNumber": null
-  }
 
-  createStudent() {
+  saveStudent() {
+    this.recentSavedStudent = null;
     this.http.post("http://localhost:8080/student/add", this.student)
       .subscribe((data) => {
-        console.log(data);
-      })
+        this.recentSavedStudent = data;
+
+        this.student = {
+          firstName: null,
+          lastName: null,
+          contactNumber: null
+        };
+      });
   }
 }
